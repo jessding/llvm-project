@@ -557,6 +557,25 @@ namespace cwg425 { // cwg425: 2.7
 #endif
 } // namespace cwg425
 
+namespace cwg426 { // cwg426: no
+  // cwg426 is about whether the same identifier can have both internal
+  // and external linkage within one translation unit.
+
+  static int i = 0;
+  void g() {
+    // FIXME: This should be ill-formed per DR 426 (adopted in C++17).
+    // An entity declared with internal linkage at #1 is redeclared with
+    // external linkage here, which is a linkage conflict.
+    extern int i;
+  }
+
+  static void f();
+  void h() {
+    // FIXME: Same entity declared with both internal and external linkage.
+    extern void f();
+  }
+} // namespace cwg426
+
 namespace cwg427 { // cwg427: 2.7
   struct B {};
   struct D : public B {
