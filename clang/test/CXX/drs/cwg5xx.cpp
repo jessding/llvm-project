@@ -91,6 +91,13 @@ namespace cwg506 { // cwg506: 2.7
 // cwg509: na
 // cwg510: na
 
+namespace cwg511 { // cwg511: yes
+  struct X {
+    template<typename T> const X& operator=(T&);
+  };
+  static_assert(__is_trivially_copyable(X), "");
+} // namespace cwg511
+
 namespace cwg512 { // cwg512: 3.0
   struct A { // #cwg512-A
     A(int); // #cwg512-A-ctor
