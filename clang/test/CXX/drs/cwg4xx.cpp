@@ -954,6 +954,18 @@ namespace cwg458 { // cwg458: 11
   }
 } // namespace cwg458
 
+namespace cwg459 { // cwg459: yes
+  struct B {
+    typedef void *It;
+  };
+
+  template<typename It> struct S : B {
+    typedef It InnerIt;
+  };
+
+  static_assert(__is_same(S<int>::InnerIt, void *), "");
+} // namespace cwg459
+
 namespace cwg460 { // cwg460: 2.7
   namespace X { namespace Q { int n; } }
   namespace Y {
